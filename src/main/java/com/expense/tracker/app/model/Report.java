@@ -7,9 +7,46 @@ public class Report {
 	Long totalAmount;
 	Long averageAmountPerDay;
     Long averageAmountPerExpense;
-	HashMap<String, Long> costsByDate;
+	HashMap<String, Long> amountByDate;
+    Long totalExpenses;
+    HashMap<String,Long> numberOfExpensesByDays;
 	
 
+
+	public Report(Long totalAmount, Long averageAmountPerDay, Long averageAmountPerExpense,
+			HashMap<String, Long> amountByDate, Long totalExpenses, HashMap<String, Long> numberOfExpensesByDays) {
+		super();
+		this.totalAmount = totalAmount;
+		this.averageAmountPerDay = averageAmountPerDay;
+		this.averageAmountPerExpense = averageAmountPerExpense;
+		this.amountByDate = amountByDate;
+		this.totalExpenses = totalExpenses;
+		this.numberOfExpensesByDays = numberOfExpensesByDays;
+	}
+
+	public HashMap<String, Long> getAmountByDate() {
+		return amountByDate;
+	}
+
+	public void setAmountByDate(HashMap<String, Long> amountByDate) {
+		this.amountByDate = amountByDate;
+	}
+
+	public Long getTotalExpenses() {
+		return totalExpenses;
+	}
+
+	public void setTotalExpenses(Long totalExpenses) {
+		this.totalExpenses = totalExpenses;
+	}
+
+	public HashMap<String, Long> getNumberOfExpensesByDays() {
+		return numberOfExpensesByDays;
+	}
+
+	public void setNumberOfExpensesByDays(HashMap<String, Long> numberOfExpensesByDays) {
+		this.numberOfExpensesByDays = numberOfExpensesByDays;
+	}
 
 	public Long getAverageAmountPerDay() {
 		return averageAmountPerDay;
@@ -20,12 +57,12 @@ public class Report {
 	}
 
 	public Report(Long totalAmount, Long averageAmountPerDay, Long averageAmountPerExpense,
-			HashMap<String, Long> costsByDate) {
+			HashMap<String, Long> amountByDate) {
 		super();
 		this.totalAmount = totalAmount;
 		this.averageAmountPerDay = averageAmountPerDay;
 		this.averageAmountPerExpense = averageAmountPerExpense;
-		this.costsByDate = costsByDate;
+		this.amountByDate = amountByDate;
 	}
 
 	public Long getAverageAmountPerExpense() {
@@ -36,14 +73,7 @@ public class Report {
 		this.averageAmountPerExpense = averageAmountPerExpense;
 	}
 
-	public HashMap<String, Long> getCostsByDate() {
-		return costsByDate;
-	}
-
-	public void setCostsByDate(HashMap<String, Long> costsByDate) {
-		this.costsByDate = costsByDate;
-	}
-
+	
 	public Long getTotalAmount() {
 		return totalAmount;
 	}
