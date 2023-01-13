@@ -35,7 +35,7 @@ public class ExpenseTrackerService {
 	}
 
 	public Expense updateExpense(Expense expense) throws NoSuchExpenseException {
-		if (expenseRepository.findById(expense.getTitle()).get() == null)
+		if (expenseRepository.findById(expense.getTitle()).isEmpty())
 			throw new NoSuchExpenseException("No Expense with title:" + expense.getTitle() + " found");
 		return expenseRepository.save(expense);
 	}
@@ -59,19 +59,17 @@ public class ExpenseTrackerService {
 			LocalDate start = LocalDate.parse(startDate, dateTimeFormatter);
 			LocalDate end = LocalDate.parse(endDate, dateTimeFormatter);
 			expenseList = expenseList.stream().filter(
-					o -> o.getExpenseDate().isAfter(start.minusDays(1)) && o.getExpenseDate().isBefore(end.plusDays(1)))
-					.toList();
+					o -> o.getExpenseDate().isAfter(start.minusDays(1)) && o.getExpenseDate().isBefore(end.plusDays(1))).toList();
 		} else {
 			int days = ExpenseConstants.WEEK.equalsIgnoreCase(range) ? 7 : 30;
-			expenseList = expenseList.stream().filter(o -> o.getExpenseDate().isAfter(LocalDate.now().minusDays(days)))
-					.toList();
+			expenseList = expenseList.stream().filter(o -> o.getExpenseDate().isAfter(LocalDate.now().minusDays(days))).toList();
 		}
 
 		return generateReport(expenseList);
 
 	}
 
-	public Report generateReport(List<Expense> expenseList) {
+	private Report generateReport(List<Expense> expenseList) {
 
 		long size = expenseList.size();
 		if (size == 0)

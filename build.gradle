@@ -4,7 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.tracker.app'
+group = 'com.expense.tracker.app'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -17,6 +17,12 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.cloud:spring-cloud-gcp-starter-data-datastore:1.2.8.RELEASE'
+	// https://mvnrepository.com/artifact/junit/junit
+testImplementation 'junit:junit:4.13.2'
+// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+	
 }
 
 tasks.named('test') {
