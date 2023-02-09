@@ -1,0 +1,41 @@
+
+app.yaml for react deployment to gcp:
+
+runtime: nodejs16
+handlers:
+  # Serve all static files with url ending with a file extension
+  - url: /(.*\..+)$
+    static_files: build/\1
+    upload: build/(.*\..+)$
+  # Catch all handler to index.html
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
+ 
+ 
+ The runtime nodejs version may vary
+ 
+ 
+ 
+ 
+ Cors meaning Cross origin occurs when a cient/server tries to acess client/server at a different url
+ 
+For ex front end is on localhost:3000 and backend is at localhost:8080
+Cors is a rule/protocol present by default at browsers and servers to prevent cross site request attack
+
+Solution:
+1)In Development environment/mode one can avoid cors by using proxy in package.json 
+for ex in the above example 
+for front end  we would add proxy:"localhost:8080" in the package.json
+This fix will work only in development mode/environment as proxy is not supported by production server and proxies are not meant to be used in production server
+In dev mode one can also use react-http-proxy-middleware and add configurations .Does the same job.
+
+2) Add headers in the response at the backend server or the server you are making a call to
+responseHeaders.set("Access-Control-Allow-Origin", "front end url");
+
+this solution works in both dev and prod environment/mode
+
+3)Add Cross-origin annotation or configuration at the server you are making calll to i,e in my case backend server localhost:8080
+In my case I have a spring boot backend server so on top of my controller I add
+@CrossOrigin(origins = "front end url")  
+this solution works in both dev and prod environment/mode
