@@ -6,6 +6,8 @@ public final class ExpenseConstants {
 	
 	public final static String MONTH="month";
 	
-	public final static String CUSTOM="custom";
+	public final static String CUSTOM = "custom";
+	
+	public final static String test = "test";
 	
 }
